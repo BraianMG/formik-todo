@@ -1,12 +1,8 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import { FormTodo } from "../interfaces";
 
 interface Props {
   addTodo: (title: string, description: string) => void;
-}
-
-interface FormInterface {
-  title: string;
-  description: string;
 }
 
 const AddTodoBar: React.FC<Props> = ({ addTodo }) => {
@@ -17,13 +13,13 @@ const AddTodoBar: React.FC<Props> = ({ addTodo }) => {
   };
 
   // Form validation
-  const validate = (values: FormInterface) => {
+  const validate = (values: FormTodo) => {
     if (!values.title) return { title: "Title is required" };
   };
 
   // Form submission
   const onSubmit = (
-    values: FormInterface,
+    values: FormTodo,
     { resetForm }: { resetForm: () => void }
   ) => {
     addTodo(values.title, values.description);

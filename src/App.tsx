@@ -1,13 +1,7 @@
 import { useState } from "react";
 import AddTodoBar from "./components/AddTodoBar";
 import TodoItem from "./components/TodoItem";
-
-interface Todo {
-  id: string;
-  title: string;
-  description: string;
-  completed: boolean;
-}
+import { Todo } from "./interfaces";
 
 const App: React.FC<{}> = () => {
   // Todo items
