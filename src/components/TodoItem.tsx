@@ -3,7 +3,7 @@ interface Props {
   title: string;
   description: string;
   completed: boolean;
-  completedTodo: (id: string) => void;
+  toggleTodoStatus: (id: string) => void;
   removeTodo: (id: string) => void;
 }
 
@@ -12,7 +12,7 @@ const TodoItem: React.FC<Props> = ({
   title,
   description,
   completed,
-  completedTodo,
+  toggleTodoStatus: toggleTodoStatus,
   removeTodo,
 }) => {
   return (
@@ -38,7 +38,7 @@ const TodoItem: React.FC<Props> = ({
         <input
           type="checkbox"
           checked={completed}
-          onChange={() => completedTodo(id)}
+          onChange={() => toggleTodoStatus(id)}
           className="h-4 w-4 cursor-pointer mr-2 mt-1"
         />
         <div>
