@@ -38,8 +38,11 @@ export const todosReducer = (
         ...state,
         todos: state.todos.map((todo) => {
           if (todo.id === action.payload.id) {
-            todo.title = action.payload.title;
-            todo.description = action.payload.description;
+            return {
+              ...todo,
+              title: action.payload.title,
+              description: action.payload.description,
+            };
           }
           return todo;
         }),
@@ -50,7 +53,10 @@ export const todosReducer = (
         ...state,
         todos: state.todos.map((todo) => {
           if (todo.id === action.payload.id) {
-            todo.completed = !todo.completed;
+            return {
+              ...todo,
+              completed: !todo.completed,
+            };
           }
           return todo;
         }),
