@@ -4,11 +4,9 @@ import TodoItem from "./components/TodoItem";
 import { TodosContext } from "./context/todos";
 
 const App: React.FC<{}> = () => {
-  // Todo items
   const { todos, addTodo, toggleTodoStatus, removeTodo } =
     useContext(TodosContext);
 
-  console.log(todos);
   return (
     <div className="w-full sm:w-9/12 lg:w-7/12 mx-auto my-20">
       <AddTodoBar
@@ -17,7 +15,7 @@ const App: React.FC<{}> = () => {
         }
       />
       <br />
-      {todos?.map((todo) => {
+      {todos.map((todo) => {
         return (
           <TodoItem
             key={todo.id}

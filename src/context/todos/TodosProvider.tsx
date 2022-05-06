@@ -1,4 +1,3 @@
-import { stat } from "fs";
 import { FC, useEffect, useReducer } from "react";
 import { Todo } from "../../interfaces";
 import { TodosContext, todosReducer } from "./";
