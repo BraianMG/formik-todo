@@ -1,34 +1,30 @@
-import { useContext } from "react";
-import AddTodoBar from "./components/AddTodoBar";
-import TodoItem from "./components/TodoItem";
-import { TodosContext } from "./context/todos";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Login from "./components/Login";
+import NotFound from "./components/NotFound";
+import PrivateRoute from "./components/PrivateRoute";
+import Signup from "./components/Signup";
+import Todos from "./components/Todos";
+import { TodosProvider } from "./context/todos";
 
-const App: React.FC<{}> = () => {
-  const { todos, addTodo, toggleTodoStatus, removeTodo } =
-    useContext(TodosContext);
-
+const App: React.FC = () => {
   return (
-    <div className="w-full sm:w-9/12 lg:w-7/12 mx-auto my-20">
-      <AddTodoBar
-        addTodo={(title: string, description: string) =>
-          addTodo({ title, description })
-        }
-      />
-      <br />
-      {todos.map((todo) => {
-        return (
-          <TodoItem
-            key={todo.id}
-            id={todo.id}
-            title={todo.title}
-            description={todo.description}
-            completed={todo.completed}
-            toggleTodoStatus={(id: string) => toggleTodoStatus({ id })}
-            removeTodo={(id: string) => removeTodo({ id })}
-          />
-        );
-      })}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route
+          path="/todos"
+          element={
+            <PrivateRoute>
+              <TodosProvider>
+                <Todos />
+              </TodosProvider>
+            </PrivateRoute>
+          }
+        />
+        <Route path="/*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

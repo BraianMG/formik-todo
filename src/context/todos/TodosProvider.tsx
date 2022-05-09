@@ -22,10 +22,10 @@ export const TodosProvider: FC = ({ children }) => {
   const updateTodo = (updatedTodo: Todo) =>
     dispatch({ type: "[Todos] - Update", payload: updatedTodo });
 
-  const toggleTodoStatus = (id: Pick<Todo, 'id'>) =>
+  const toggleTodoStatus = (id: Pick<Todo, "id">) =>
     dispatch({ type: "[Todos] - Toggle status", payload: id });
 
-  const removeTodo = (id: Pick<Todo, 'id'>) =>
+  const removeTodo = (id: Pick<Todo, "id">) =>
     dispatch({ type: "[Todos] - Remove", payload: id });
 
   useEffect(() => {
