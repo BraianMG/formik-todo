@@ -1,20 +1,14 @@
+import { Todo } from "../interfaces";
+
 interface Props {
-  id: string;
-  title: string;
-  description: string;
-  completed: boolean;
-  toggleTodoStatus: (id: string) => void;
+  todo: Todo;
+  updateTodo: (todo: Todo) => void;
   removeTodo: (id: string) => void;
 }
 
-const TodoItem: React.FC<Props> = ({
-  id,
-  title,
-  description,
-  completed,
-  toggleTodoStatus: toggleTodoStatus,
-  removeTodo,
-}) => {
+const TodoItem: React.FC<Props> = ({ todo, updateTodo, removeTodo }) => {
+  const { id, title, description, completed } = todo;
+
   return (
     <div
       className={[
@@ -38,7 +32,9 @@ const TodoItem: React.FC<Props> = ({
         <input
           type="checkbox"
           checked={completed}
-          onChange={() => toggleTodoStatus(id)}
+          onChange={() =>
+            updateTodo({ ...todo, completed: !completed })
+          }
           className="h-4 w-4 cursor-pointer mr-4 mt-1"
         />
         <div>
