@@ -1,5 +1,5 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { FormTodo } from "../interfaces";
+import { TodoForm } from "../interfaces";
 
 interface Props {
   addTodo: (title: string, description: string) => void;
@@ -13,13 +13,13 @@ const AddTodoBar: React.FC<Props> = ({ addTodo }) => {
   };
 
   // Form validation
-  const validate = (values: FormTodo) => {
+  const validate = (values: TodoForm) => {
     if (!values.title) return { title: "Title is required" };
   };
 
   // Form submission
   const onSubmit = (
-    values: FormTodo,
+    values: TodoForm,
     { resetForm }: { resetForm: () => void }
   ) => {
     addTodo(values.title, values.description);
@@ -54,7 +54,7 @@ const AddTodoBar: React.FC<Props> = ({ addTodo }) => {
               name="title"
               type="text"
               placeholder="What do you need to remember?"
-              className="w-full font-semibold outline-none text-xl px-2 rounded-lg"
+              className="w-full font-semibold outline-none text-xl px-2 rounded-lg border-solid border-b-4 border-yellow-500"
             />
             <ErrorMessage
               name="title"
@@ -69,7 +69,7 @@ const AddTodoBar: React.FC<Props> = ({ addTodo }) => {
             name="description"
             type="textarea"
             placeholder="Enter your description"
-            className="bg-yellow-50 rounded-2xl p-2 w-full h-20 outline-none text-sm text-gray-700 font-medium shadow-lg"
+            className="bg-yellow-50 rounded-2xl px-4 py-2 w-full h-20 outline-none text-sm text-gray-700 font-medium shadow-lg"
           />
           <button
             type="submit"

@@ -1,4 +1,4 @@
-export interface FormTodo {
+export interface TodoForm {
   title: string;
   description: string;
 }
