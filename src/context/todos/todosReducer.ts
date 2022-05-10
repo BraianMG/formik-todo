@@ -3,9 +3,8 @@ import { Todo } from "../../interfaces";
 
 type TodosActionType =
   | { type: "[Todos] - Fetch"; payload: Todo[] }
-  | { type: "[Todos] - Add"; payload: Pick<Todo, "title" | "description"> }
+  | { type: "[Todos] - Add"; payload: Todo }
   | { type: "[Todos] - Update"; payload: Todo }
-  | { type: "[Todos] - Toggle status"; payload: Pick<Todo, "id"> }
   | { type: "[Todos] - Remove"; payload: Pick<Todo, "id"> };
 
 export const todosReducer = (
@@ -25,10 +24,10 @@ export const todosReducer = (
         todos: [
           ...state.todos,
           {
-            id: `todo__${Math.random().toString().substr(2)}`,
+            id: action.payload.id,
             title: action.payload.title,
             description: action.payload.description,
-            completed: false,
+            completed: action.payload.completed,
           },
         ],
       };
@@ -38,19 +37,12 @@ export const todosReducer = (
         ...state,
         todos: state.todos.map((todo) => {
           if (todo.id === action.payload.id) {
-            todo.title = action.payload.title;
-            todo.description = action.payload.description;
-          }
-          return todo;
-        }),
-      };
-
-    case "[Todos] - Toggle status":
-      return {
-        ...state,
-        todos: state.todos.map((todo) => {
-          if (todo.id === action.payload.id) {
-            todo.completed = !todo.completed;
+            return {
+              ...todo,
+              title: action.payload.title,
+              description: action.payload.description,
+              completed: action.payload.completed,
+            };
           }
           return todo;
         }),

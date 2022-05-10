@@ -1,20 +1,14 @@
+import { Todo } from "../interfaces";
+
 interface Props {
-  id: string;
-  title: string;
-  description: string;
-  completed: boolean;
-  toggleTodoStatus: (id: string) => void;
+  todo: Todo;
+  updateTodo: (todo: Todo) => void;
   removeTodo: (id: string) => void;
 }
 
-const TodoItem: React.FC<Props> = ({
-  id,
-  title,
-  description,
-  completed,
-  toggleTodoStatus: toggleTodoStatus,
-  removeTodo,
-}) => {
+const TodoItem: React.FC<Props> = ({ todo, updateTodo, removeTodo }) => {
+  const { id, title, description, completed } = todo;
+
   return (
     <div
       className={[
@@ -34,12 +28,14 @@ const TodoItem: React.FC<Props> = ({
         completed ? "opacity-60" : "opacity-100",
       ].join(" ")}
     >
-      <div className="flex cursor-pointer">
+      <div className="flex items-center cursor-pointer">
         <input
           type="checkbox"
           checked={completed}
-          onChange={() => toggleTodoStatus(id)}
-          className="h-4 w-4 cursor-pointer mr-2 mt-1"
+          onChange={() =>
+            updateTodo({ ...todo, completed: !completed })
+          }
+          className="h-4 w-4 cursor-pointer mr-4 mt-1"
         />
         <div>
           <h3
@@ -67,7 +63,7 @@ const TodoItem: React.FC<Props> = ({
         className="h-5 w-5 my-auto cursor-pointer transition duration-200 hover:scale-110"
         fill="none"
         viewBox="0 0 24 24"
-        stroke="#BDBDBD"
+        stroke="#F48484"
         onClick={() => removeTodo(id)}
       >
         <path
