@@ -2,9 +2,10 @@ import { useContext } from "react";
 import AddTodoBar from "./components/AddTodoBar";
 import TodoItem from "./components/TodoItem";
 import { TodosContext } from "./context/todos";
+import { Todo } from "./interfaces";
 
 const App: React.FC<{}> = () => {
-  const { todos, addTodo, toggleTodoStatus, removeTodo } =
+  const { todos, addTodo, updateTodo, removeTodo } =
     useContext(TodosContext);
 
   return (
@@ -19,12 +20,9 @@ const App: React.FC<{}> = () => {
         return (
           <TodoItem
             key={todo.id}
-            id={todo.id}
-            title={todo.title}
-            description={todo.description}
-            completed={todo.completed}
-            toggleTodoStatus={(id: string) => toggleTodoStatus({ id })}
-            removeTodo={(id: string) => removeTodo({ id })}
+            todo={todo}
+            updateTodo={(todo: Todo) => updateTodo(todo)}
+            removeTodo={(id: string) => removeTodo(id)}
           />
         );
       })}
