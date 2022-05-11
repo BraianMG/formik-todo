@@ -6,18 +6,15 @@ interface Props {
 }
 
 const AddTodoBar: React.FC<Props> = ({ addTodo }) => {
-  // Initial values of the form
   const initialValues = {
     title: "",
     description: "",
   };
 
-  // Form validation
   const validate = (values: TodoForm) => {
     if (!values.title) return { title: "Title is required" };
   };
 
-  // Form submission
   const onSubmit = (
     values: TodoForm,
     { resetForm }: { resetForm: () => void }
