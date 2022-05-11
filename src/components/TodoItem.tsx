@@ -1,4 +1,5 @@
 import { Todo } from "../interfaces";
+import Swal from "sweetalert2"
 
 interface Props {
   todo: Todo;
@@ -8,6 +9,27 @@ interface Props {
 
 const TodoItem: React.FC<Props> = ({ todo, updateTodo, removeTodo }) => {
   const { id, title, description, completed } = todo;
+
+  const onRemove = (id: string) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "A deleted ToDo cannot be recovered",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        removeTodo(id)
+        Swal.fire(
+          'ToDo deleted!',
+          'The ToDo was successfully removed',
+          'success'
+        )
+      }
+    })
+  }
 
   return (
     <div
@@ -64,7 +86,7 @@ const TodoItem: React.FC<Props> = ({ todo, updateTodo, removeTodo }) => {
         fill="none"
         viewBox="0 0 24 24"
         stroke="#F48484"
-        onClick={() => removeTodo(id)}
+        onClick={() => onRemove(id)}
       >
         <path
           strokeLinecap="round"
