@@ -26,7 +26,6 @@ export const TodosProvider: FC = ({ children }) => {
 
   const updateTodo = async (updatedTodo: Todo) => {
     const { data } = await axiosClient.put<Todo>(`/todos/${updatedTodo.id}`, updatedTodo);
-    console.log(data);
     dispatch({ type: "[Todos] - Update", payload: data });
   };
 
