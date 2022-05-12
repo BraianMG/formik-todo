@@ -9,6 +9,11 @@ yarn install
 - Copiar archivo __.env.example__ y renombrarlo a __.env__
 - Completar con las variables de entorno correspondientes
 
+## Levantar proyecto
+```
+yarn start
+```
+
 ## Rutas
 - Todos: __"/"__
 
