@@ -1,17 +1,17 @@
-import { useContext } from "react";
-import AddTodoBar from "./components/AddTodoBar";
-import TodoItem from "./components/TodoItem";
-import { TodosContext } from "./context/todos";
-import { Todo } from "./interfaces";
-import logo from "./img/logo.png";
+import { useContext } from 'react'
+import AddTodoBar from './components/AddTodoBar'
+import TodoItem from './components/TodoItem'
+import { TodosContext } from './context/todos'
+import logo from './img/logo.png'
+import { Todo } from './interfaces'
 
 const App: React.FC<{}> = () => {
-  const { todos, addTodo, updateTodo, removeTodo } = useContext(TodosContext);
+  const { todos, addTodo, updateTodo, removeTodo } = useContext(TodosContext)
 
   return (
     <div className="w-full sm:w-9/12 lg:w-7/12 mx-auto my-20">
       <div className="flex flex-row justify-center items-center mb-20">
-        <img src={logo} alt="logo" className="w-8 sm:w-10 mr-3"/>
+        <img src={logo} alt="logo" className="w-8 sm:w-10 mr-3" />
         <h1 className="text-4xl font-bold text-yellow-500 sm:text-5xl sm:truncate">
           ToDo List
         </h1>
@@ -23,7 +23,7 @@ const App: React.FC<{}> = () => {
         }
       />
       <br />
-      {todos.map((todo) => {
+      {todos.map(todo => {
         return (
           <TodoItem
             key={todo.id}
@@ -31,10 +31,10 @@ const App: React.FC<{}> = () => {
             updateTodo={(todo: Todo) => updateTodo(todo)}
             removeTodo={(id: string) => removeTodo(id)}
           />
-        );
+        )
       })}
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App

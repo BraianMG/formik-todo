@@ -1,27 +1,27 @@
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import { TodoForm } from "../interfaces";
+import { ErrorMessage, Field, Form, Formik } from 'formik'
+import { TodoForm } from '../interfaces'
 
 interface Props {
-  addTodo: (title: string, description: string) => void;
+  addTodo: (title: string, description: string) => void
 }
 
 const AddTodoBar: React.FC<Props> = ({ addTodo }) => {
   const initialValues = {
-    title: "",
-    description: "",
-  };
+    title: '',
+    description: '',
+  }
 
   const validate = (values: TodoForm) => {
-    if (!values.title) return { title: "Title is required" };
-  };
+    if (!values.title) return { title: 'Title is required' }
+  }
 
   const onSubmit = (
     values: TodoForm,
     { resetForm }: { resetForm: () => void }
   ) => {
-    addTodo(values.title, values.description);
-    resetForm();
-  };
+    addTodo(values.title, values.description)
+    resetForm()
+  }
 
   return (
     <Formik
@@ -90,7 +90,7 @@ const AddTodoBar: React.FC<Props> = ({ addTodo }) => {
         </div>
       </Form>
     </Formik>
-  );
-};
+  )
+}
 
-export default AddTodoBar;
+export default AddTodoBar

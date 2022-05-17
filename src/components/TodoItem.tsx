@@ -1,66 +1,66 @@
-import { Todo } from "../interfaces";
-import Swal from "sweetalert2";
-import confetti from "canvas-confetti";
+import confetti from 'canvas-confetti'
+import Swal from 'sweetalert2'
+import { Todo } from '../interfaces'
 
 interface Props {
-  todo: Todo;
-  updateTodo: (todo: Todo) => void;
-  removeTodo: (id: string) => void;
+  todo: Todo
+  updateTodo: (todo: Todo) => void
+  removeTodo: (id: string) => void
 }
 
 const TodoItem: React.FC<Props> = ({ todo, updateTodo, removeTodo }) => {
-  const { id, title, description, completed } = todo;
+  const { id, title, description, completed } = todo
 
   const onToggleTodo = (todo: Todo) => {
-    const newTodo = { ...todo, completed: !completed };
-    updateTodo(newTodo);
+    const newTodo = { ...todo, completed: !completed }
+    updateTodo(newTodo)
     if (newTodo.completed) {
       confetti({
         spread: 50,
         origin: { y: 1.1 },
-      });
+      })
     }
-  };
+  }
 
   const onRemove = (id: string) => {
     Swal.fire({
-      title: "Are you sure?",
-      text: "A deleted ToDo cannot be recovered",
-      icon: "warning",
+      title: 'Are you sure?',
+      text: 'A deleted ToDo cannot be recovered',
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then(result => {
       if (result.isConfirmed) {
-        removeTodo(id);
+        removeTodo(id)
         Swal.fire(
-          "ToDo deleted!",
-          "The ToDo was successfully removed",
-          "success"
-        );
+          'ToDo deleted!',
+          'The ToDo was successfully removed',
+          'success'
+        )
       }
-    });
-  };
+    })
+  }
 
   return (
     <div
       className={[
-        "flex",
-        "justify-between",
-        "bg-gray-50",
-        "rounded-lg",
-        "py-2",
-        "px-5",
-        "my-2",
-        "transition",
-        "duration-200",
-        "hover:scale-105",
-        "hover:bg-gray-100",
-        "hover:inner-shadow-gray-100",
-        "shadow-sm",
-        completed ? "opacity-60" : "opacity-100",
-      ].join(" ")}
+        'flex',
+        'justify-between',
+        'bg-gray-50',
+        'rounded-lg',
+        'py-2',
+        'px-5',
+        'my-2',
+        'transition',
+        'duration-200',
+        'hover:scale-105',
+        'hover:bg-gray-100',
+        'hover:inner-shadow-gray-100',
+        'shadow-sm',
+        completed ? 'opacity-60' : 'opacity-100',
+      ].join(' ')}
     >
       <div className="flex items-center cursor-pointer">
         <input
@@ -72,19 +72,19 @@ const TodoItem: React.FC<Props> = ({ todo, updateTodo, removeTodo }) => {
         <div>
           <h3
             className={[
-              completed ? "line-through" : "",
-              completed ? "text-gray-400" : "text-black",
-              "font-bold",
-              "text-lg",
-            ].join(" ")}
+              completed ? 'line-through' : '',
+              completed ? 'text-gray-400' : 'text-black',
+              'font-bold',
+              'text-lg',
+            ].join(' ')}
           >
             {title}
           </h3>
           <p
             className={[
-              completed ? "text-gray-300" : "text-gray-700",
-              "text-xs",
-            ].join(" ")}
+              completed ? 'text-gray-300' : 'text-gray-700',
+              'text-xs',
+            ].join(' ')}
           >
             {description}
           </p>
@@ -106,7 +106,7 @@ const TodoItem: React.FC<Props> = ({ todo, updateTodo, removeTodo }) => {
         />
       </svg>
     </div>
-  );
-};
+  )
+}
 
-export default TodoItem;
+export default TodoItem
